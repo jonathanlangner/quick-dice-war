@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="gamestyle.css">
+</head>
+
+<body>
+    <div class="score-board">
+        <div class="player" id="play1">Player:
+            <span>Health: |<span id="player-health"></span>| </span>
+        </div>
+        <div class="player" id="play2">AI 2:
+            <span>Health: |<span id="ai-health"></span>|</span>
+        </div>
+    </div>
+    <div class="current-attacker"> Player Roll </div>
+    <div class="player-die-container">
+        <div id="player-die-1" class="player-dice"></div>
+        <div id="player-die-2" class="player-dice"></div>
+    </div>
+    <div class="current-defender"> AI Roll </div>
+    <div class="ai-die-container">
+        <div id="ai-die-1" class="ai-dice"></div>
+        <div id="ai-die-2" class="ai-dice"></div>
+    </div>
+    <div style="text-align: center;">
+        <button class="roll-dice-btn" id="roll-dice">Roll Dice</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
