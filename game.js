@@ -1,23 +1,26 @@
-const playerHealth = document.getElementById("player-health");
-const aiHealth = document.getElementById("ai-health");
-const playerDie = document.getElementById("player-die-container");
-const aiDie = document.getElementById("ai-die-container");
-const rollDice = document.getElementById("roll-dice");
+const playerHealth = document.querySelector("#player-health");
+const aiHealth = document.querySelector("#ai-health");
+const playerDie = document.querySelector("#player-die-container");
+const aiDie = document.querySelector("#ai-die-container");
+const rollDice = document.querySelector("#roll-dice");
 
-const playerDie1 = document.getElementById("player-die-1");
-const playerDie2 = document.getElementById("player-die-2");
+const playerDie1 = document.querySelector("#player-die-1");
+const playerDie2 = document.querySelector("#player-die-2");
 
-const aiDie1 = document.getElementById("ai-die-1");
-const aiDie2 = document.getElementById("ai-die-2");
+const aiDie1 = document.querySelector("#ai-die-1");
+const aiDie2 = document.querySelector("#ai-die-2");
 
 let currentPlayerHealth = 10;
 let currentAiHealth = 10;
+
+let totalPlayerScore = 0;
+let totalAIScore = 0;
 
 playerHealth.textContent = currentPlayerHealth;
 aiHealth.textContent = currentAiHealth;
 
 
-function takeATurn() {
+const takeATurn = function () {
     let a = 0;
     let b = 0;
     let c = 0;
@@ -184,27 +187,35 @@ function takeATurn() {
             }
         }
     }
-
-    if (currentAiHealth <= 0) { alert("The Player Wins The Game!") };
-    if (currentPlayerHealth <= 0) { alert("The AI Wins The Game!") };
-    console.log(a, b, c, d);
+    if( currentAiHealth <= 0 && currentPlayerHealth <=0){
+        totalPlayerScore += 1;
+        totalAIScore += 1;
+        alert(`TIE! Total Score: Player: ${totalPlayerScore} | AI: ${totalAIScore}`);
+        currentPlayerHealth = 10;
+        currentAiHealth = 10;
+        aiHealth.textContent = currentAiHealth;
+        playerHealth.textContent = currentPlayerHealth;
+    }
+    else if (currentAiHealth <= 0) { 
+        totalPlayerScore += 1;
+        alert(`Player One Wins The Game! Total Score: Player: ${totalPlayerScore} | AI: ${totalAIScore}`);
+        currentPlayerHealth = 10;
+        currentAiHealth = 10;
+        aiHealth.textContent = currentAiHealth;
+        playerHealth.textContent = currentPlayerHealth;
+        
+    }
+    else if (currentPlayerHealth <= 0) { 
+        totalAIScore += 1;
+        alert(`Player One Wins The Game! Total Score: Player: ${totalPlayerScore} | AI: ${totalAIScore}`);
+        currentPlayerHealth = 10;
+        currentAiHealth = 10;
+        aiHealth.textContent = currentAiHealth;
+        playerHealth.textContent = currentPlayerHealth;
+    }
 
 }
 
 rollDice.addEventListener("click", takeATurn);
 
 
-let oneDArr = [0, 1, 2, 3, 4, 5, 6, 7];
-let oneDArr2 = ["a","b","c","d","e","f","g","h"];
-let oneDArr3 = ["Zebra","Calc", "Monkey", "Fish", "Elk", "Test", "Again","Finally"];
-let oneDArr4 = [1.5, 1.9, 2.3, 4.3, 7.5, 6.1, 2.1, 8.2]
-
-let twoDArr = [oneDArr, oneDArr2];
-let twoDArr2 = [oneDArr3, oneDArr4];
-
-let threeDArr = [twoDArr, twoDArr2];
-
-// console.log(twoDArr[0][2]);
-// console.log(oneDArr[2]); // 2 is expected output
-// console.log(twoDArr[0][5]); //5 is expected output.
-// console.log(threeDArr[0]); // Monkey is expected output
